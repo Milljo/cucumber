@@ -1,0 +1,7 @@
+Feature: Sing in to webpage
+
+@smoke
+Scenario: Click to the sing in page
+	When user load to the Walutomat home page
+	And click the sign in button
+	Then should see the sign in form

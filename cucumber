@@ -1,0 +1,8 @@
+Feature: Sing in to webpage
+
+@smoke
+Scenario: Click to the sing in page
+	Given the user load to home page
+	When user see sign in button 
+	And click it
+	Then should see a sing in form
