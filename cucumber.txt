@@ -2,6 +2,57 @@ Feature: Sing in to webpage
 
 @smoke
 Scenario: Click to the sing in page
-	When user load to the Walutomat home page
+	When user load to the home page
 	And click the sign in button
 	Then should see the sign in form
+
+Feature: Log in to account
+
+@smoke
+Scenario: Correct log in to account
+	Given user see sign in form
+	When user write login <correct login>
+	And write correct password <correct password>
+	And click log in button
+	Then should log to account like a <correct login>
+
+Examples:
+| correct login | correct password |
+| jmia		| start159	   |
+
+@negative
+Scenario: Incorrect log in to account - login and password
+	Given user see sing in form
+	When user write incorrect login <incorrect login>
+	And write incorrect password <incorrect password>
+	And click log in button
+	Then should see error message
+
+Example:
+| incorrect login | incorrect password |
+| test_1	  | start123	       |
+| test_2	  | start123	       |
+
+@negative
+Scenario: Incorrect log in to account - login
+	Given user see sing in form
+	When user write incorrect login <incorrect login>
+	And write correct password <correct password>
+	And use log in button
+	Then should see error message
+
+Example:
+| incorrect login | correct password |
+| jmio		  | start159	     |
+
+@negative
+Scenario: Incorrect log in to account - password
+	Given user see sing in form
+	When user write correct login <correct login>
+	And write incorrect password <incorrect password>
+	And use log in button
+	Then should see error message
+
+Example:
+| correct password | incorrect password |
+| jmia		   | start150		|
